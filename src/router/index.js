@@ -28,6 +28,10 @@ const router = new Router({
     {
       path:'/viewlist',
       component:() => import('../views/viewlist/Viewlist')
+    },
+    {
+      path:'/detail/:iid',
+      component:() => import('../views/detail/Detail')
     }
   ]
 })
