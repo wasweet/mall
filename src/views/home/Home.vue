@@ -76,7 +76,7 @@
     activated() {
 
       this.$refs.scroll.scrollTo(0,this.saveY,1)
-       // this.$refs.scroll.refresh()
+        this.$refs.scroll.refresh()
     },
     deactivated() {
       this.saveY = this.$refs.scroll.scroll.y

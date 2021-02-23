@@ -37,6 +37,7 @@
         pullUpLoad:this.pullUpLoad,
         observeDOM:true,
         click:true,
+        useTransition:false
 
       })
       //2.监听滚动位置
@@ -56,6 +57,9 @@
             },
       finishPullUp() {
         this.scroll.finishPullUp();
+      },
+      refresh() {
+        this.scroll && this.scroll.refresh && this.scroll.refresh()
       }
     }
   }
