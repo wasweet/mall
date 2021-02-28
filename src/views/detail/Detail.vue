@@ -15,6 +15,7 @@
     </scroll>
     <DetailBottomBar @addCart="addToCart"></DetailBottomBar>
     <back-top  @click.native="backClick" v-show="isAcive"></back-top>
+    <!-- <toast :isMessage="message" :isShow="show"></toast> -->
   </div>
 </template>
 
@@ -31,6 +32,7 @@
     import Scroll from '../../components/common/scroll/Scroll.vue'
     import GoodsList from '../../components/content/goods/GoodsList.vue'
     import BackTop from '../../components/content/backTop/BackTop.vue'
+    // import Toast from '../../components/common/toast/Toast.vue'
 
     import {getDetail, getRecommend} from '../../network/detail.js'
     import {Goods, Shop} from '../../network/detail.js'
@@ -48,7 +50,8 @@
       DetailBottomBar,
       Scroll,
       GoodsList,
-      BackTop
+      BackTop,
+      // Toast
     },
     data() {
       return {
@@ -64,6 +67,8 @@
         getthemeTopY: null,
         currentIndex:0,
         isAcive:false,
+        // message:'',//加入购物车时 toast 显示内容
+        // show:false
       }
     },
     created() {
@@ -153,7 +158,18 @@
           //将商品添加到购物车里（Vuex）
           // this.$store.state.cartList.push(product)
           // this.$store.commit('addCart',product);//mutations
-          this.$store.dispatch('addCart',product)
+          this.$store.dispatch('addCart',product).then( res => {
+            //.then    actives中返回promis
+
+
+            // this.message = res;
+            // this.show = true;
+            // setTimeout(() => {
+            //    this.show = false;
+            //    this.message = '';
+            // },1000)
+            this.$toast.show(res,1500)
+          })
       }
     }
   }
@@ -163,11 +179,11 @@
   #detaill{
     height: 100vh;
     position: relative;
-    z-index: 999;
+    z-index: 11;
     background-color: #fff;
   }
   .detail-nav-bar {
-    z-index: 9;
+    z-index: 11;
     position: relative;
     background-color: #fff;
   }

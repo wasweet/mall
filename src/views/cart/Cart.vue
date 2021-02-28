@@ -6,7 +6,7 @@
     <scroll class="content" ref="scroll">
       <cart-list></cart-list>
     </scroll>
-
+    <CartBottomBar></CartBottomBar>
   </div>
 </template>
 
@@ -14,6 +14,7 @@
   import NavBar from '../../components/common/navbar/NavBar.vue'
   import Scroll from '../../components/common/scroll/Scroll.vue'
   import CartList from './childComponents/CartList.vue'
+  import CartBottomBar from './childComponents/CartBottomBar.vue'
 
   import { mapGetters } from 'vuex'
   export default {
@@ -21,7 +22,8 @@
     components:{
       NavBar,
       Scroll,
-      CartList
+      CartList,
+      CartBottomBar
     },
     computed:{
       // cartListLength() {
@@ -47,7 +49,7 @@
     height: 100vh;
   }
  .content {
-    height: calc(100% - 44px);
+    height: calc(100% - 134px);
      overflow: hidden;
   }
 /*  .content {
