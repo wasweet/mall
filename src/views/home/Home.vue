@@ -161,6 +161,8 @@
   .home-nav-bar {
    background-color:#FF8198;
     color:#FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
    /* position: fixed;
     left: 0;
     right: 0;

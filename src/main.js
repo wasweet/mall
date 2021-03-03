@@ -6,6 +6,10 @@ import toast from './components/common/toast'
 import fastclick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
 
+//引入vant（移动组件库）组件
+import Vant from 'vant'
+import "vant/lib/index.css";
+
 Vue.config.productionTip = false
 
 Vue.use(toast)
@@ -14,6 +18,9 @@ Vue.use(toast)
 fastclick.attach(document.body)
 //vue图片懒加载  :src 换成v-lazy
 Vue.use(VueLazyload)
+
+//使用Vant组件库
+Vue.use(Vant)
 
 new Vue({
   render: h => h(App),
