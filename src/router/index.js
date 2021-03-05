@@ -26,8 +26,8 @@ const router = new Router({
       component:() => import('../views/profile/Profile')
     },
     {
-      path:'/viewlist',
-      component:() => import('../views/viewlist/Viewlist')
+      path:'/category',
+      component:() => import('../views/category/Category')
     },
     {
       path:'/detail/:iid',
