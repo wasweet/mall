@@ -1,6 +1,6 @@
 <template>
   <div class="bottom-bar">
-      <div class="bar-item bar-left">
+      <!-- <div class="bar-item bar-left">
         <div>
           <i class="icon service"></i>
           <span class="text">客服</span>
@@ -17,16 +17,58 @@
       <div class="bar-item bar-right">
         <div class="cart" @click="addToCart">加入购物车</div>
         <div class="buy">购买</div>
-      </div>
+      </div> -->
+      <van-goods-action>
+      <van-goods-action-icon icon="chat-o" text="客服"></van-goods-action-icon>
+      <van-goods-action-icon icon="cart-o"
+                             text="购物车"
+                             @click="$router.push('/cart')"></van-goods-action-icon>
+      <van-goods-action-icon icon="star-o"
+                             text="收藏"
+                             :color="isCollect ? '#ff5000' : '#000000'"
+                             :icon="isCollect ? 'star' : 'star-o'"
+                             :text="isCollect ? '已收藏' : '收藏'"
+                             @click="collectClick"></van-goods-action-icon>
+      <van-goods-action-button text="加入购物车"
+                               :info="1"
+                               type="warning"
+                               @click="addToCart"
+                               ></van-goods-action-button>
+      <van-goods-action-button text="立即购买"
+                               type="danger"
+                               @click="$router.push('/cart')"></van-goods-action-button>
+       </van-goods-action>
     </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     name:"DetailBottomBar",
+    data() {
+      return {
+        isCollect: false
+        }
+      },
+      computed:{
+        //对象形式写法
+        // ...mapGetters({
+        //   cartListLength:"cartListLength"
+        // })
+         ...mapGetters(['cartListLength'])
+      },
     methods: {
       addToCart() {
         this.$emit('addCart')
+      },
+      collectClick() {
+        if(!this.isCollect) {
+          this.$toast.show("收藏成功",1500);
+          this.isCollect = true;
+        } else {
+          this.$toast.show("取消收藏",1500);
+          this.isCollect = false
+        }
       }
     }
   }
@@ -43,39 +85,14 @@
       display: flex;
       text-align: center;
     }
-    .bar-item {
-      flex: 1;
-      display: flex;
-    }
-    .bar-item>div {
-      flex: 1;
-    }
-.bar-left .text {
-    font-size: 13px;
-  }
-  .bar-left .icon {
-    display: block;
-    width: 22px;
-    height: 22px;
-    margin: 10px auto 3px;
-    background: url(../../../assets/img/detail/detail_bottom.png) 0 0/100%;
-  }
-  .bar-left .service {
-    background-position:0 -54px;
-  }
-  .bar-left .shop {
-    background-position:0 -98px;
-  }
-  .bar-right {
-    font-size: 15px;
-    color: #fff;
-    line-height: 58px;
-  }
-  .bar-right .cart {
-      background-color: #ffe817;
-      color: #333;
-    }
-    .bar-right .buy {
-      background-color: #f69;
-    }
+ /deep/ .van-goods-action {
+   line-height: 50px;
+   height: 50px;
+   border-top: 1px solid #cccccc;
+ }
+ 
+ /deep/ .van-goods-action-icon {
+   height: auto;
+ }
+
 </style>

@@ -39,6 +39,6 @@
     transform: translate(-50%, -50%);
     padding: 13px 16px;
     color:#fff;
-    z-index: 99;
+    z-index: 999;
   }
 </style>
